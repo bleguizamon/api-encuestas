@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20230425034855",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "formulario_encuesta",
+  "fields": [
+    {
+      "fieldName": "numeroDocumento",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "comentarios",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaRespuesta",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FormularioEncuesta",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "marca",
+      "otherEntityName": "computador",
+      "relationshipName": "marcaFavoritaPC",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

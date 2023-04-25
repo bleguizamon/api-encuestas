@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230425034856",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "computador",
+  "fields": [
+    {
+      "fieldName": "marca",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Computador",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
