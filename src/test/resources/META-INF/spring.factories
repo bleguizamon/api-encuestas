@@ -1,0 +1,1 @@
+org.springframework.test.context.ContextCustomizerFactory = co.gov.sic.encuestas.config.TestContainersSpringContextCustomizerFactory
