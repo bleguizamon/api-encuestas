@@ -1,6 +1,7 @@
 package co.gov.sic.encuestas.config;
 
 import co.gov.sic.encuestas.security.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -53,6 +54,11 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    public CustomAuthenticationFailureHandler customAuthenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
+    }
+
+    @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
     }
@@ -83,7 +89,7 @@ public class SecurityConfiguration {
             .formLogin()
             .loginProcessingUrl("/api/authentication")
             .successHandler(ajaxAuthenticationSuccessHandler())
-            .failureHandler(ajaxAuthenticationFailureHandler())
+            .failureHandler(customAuthenticationFailureHandler())
             .permitAll()
         .and()
             .logout()

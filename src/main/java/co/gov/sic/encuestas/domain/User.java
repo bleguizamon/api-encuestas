@@ -79,6 +79,28 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "failed_attempts")
+    private Integer failedAttempts;
+
+    @Column(name = "locked_at")
+    private Boolean lockedAt = false;
+
+    public Integer getFailedAttempts() {
+        return failedAttempts;
+    }
+
+    public void setFailedAttempts(Integer failedAttempts) {
+        this.failedAttempts = failedAttempts;
+    }
+
+    public Boolean getLockedAt() {
+        return lockedAt;
+    }
+
+    public void setLockedAt(Boolean lockedAt) {
+        this.lockedAt = lockedAt;
+    }
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -235,6 +257,8 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", failedAttempts='" + failedAttempts + '\'' +
+            ", lockedAt='" + lockedAt + '\'' +
             "}";
     }
 }

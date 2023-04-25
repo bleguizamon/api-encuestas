@@ -6,6 +6,7 @@ import co.gov.sic.encuestas.service.dto.FormularioEncuestaDTO;
 import co.gov.sic.encuestas.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -65,6 +66,7 @@ public class FormularioEncuestaResource {
         if (formularioEncuestaDTO.getId() != null) {
             throw new BadRequestAlertException("A new formularioEncuesta cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        formularioEncuestaDTO.setFechaRespuesta(Instant.now());
         FormularioEncuestaDTO result = formularioEncuestaService.save(formularioEncuestaDTO);
         return ResponseEntity
             .created(new URI("/api/formulario-encuestas/" + result.getId()))
@@ -98,7 +100,7 @@ public class FormularioEncuestaResource {
         if (!formularioEncuestaRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
-
+        formularioEncuestaDTO.setFechaRespuesta(Instant.now());
         FormularioEncuestaDTO result = formularioEncuestaService.update(formularioEncuestaDTO);
         return ResponseEntity
             .ok()
@@ -133,7 +135,7 @@ public class FormularioEncuestaResource {
         if (!formularioEncuestaRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
-
+        formularioEncuestaDTO.setFechaRespuesta(Instant.now());
         Optional<FormularioEncuestaDTO> result = formularioEncuestaService.partialUpdate(formularioEncuestaDTO);
 
         return ResponseUtil.wrapOrNotFound(
